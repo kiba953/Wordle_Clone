@@ -67,10 +67,23 @@ h1 {
   margin: 5px;
   width: 40px;
   height: 50px;
-  background: #eee;
+  background: #ccc;
   display: inline-block;
   border-radius: 6px;
   line-height: 50px;
+  box-shadow: 0 4px 4px  rgba(0, 0, 0, 0.892);
+  cursor: pointer;
+}
+
+.keypad > div:hover {
+  box-shadow: 0 1px 1px  rgba(0, 0, 0, 0.892);
+  transition:all 0.4s ease-in;
+}
+.keypad > .backspace{
+  width:100px;
+}
+.keypad > .enter{
+  width:60px;
 }
 .keypad > div.green {
   background: #5ac85a;
@@ -83,7 +96,7 @@ h1 {
   transition: all 0.3s ease-in;
 }
 .keypad > div.grey {
-  background: #a1a1a1;
+  background: #888;
   color: #fff;
   transition: all 0.3s ease-in;
 }

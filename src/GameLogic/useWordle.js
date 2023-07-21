@@ -89,6 +89,7 @@ const useWordle = (solution) => {
         
 
         const keypress = ({ key }) => {
+            console.log(key)
             if (key === "Enter") {
               if (turn > 5) {
                 console.log("no guess remaining");
