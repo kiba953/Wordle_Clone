@@ -1,5 +1,6 @@
 <h1>Wordle Clone</h1>
-<h3>Hello, This is a clone of the popular game from New York times called Wordle</h3>
+<h3><span style="color: red;">This text will be red.</span>
+Hello, This is a clone of the popular game from New York times called Wordle</h3>
 <p>To Use the Code, Follow These steps</p>
 <ol>
   <li>Clone the repository in your local system</li>
