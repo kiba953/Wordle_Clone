@@ -96,10 +96,18 @@ const useWordle = (solution) => {
                 return;
               }
               if (history.includes(currentGuess)) {
+                document.querySelector(".current").classList.add("shake-grid");
+                setTimeout(() => {
+                  document.querySelector(".current").classList.remove("shake-grid");
+                }, 500);
                 console.log("Already Tried");
                 return;
               }
               if (currentGuess.length !== 5) {
+                document.querySelector(".current").classList.add("shake-grid");
+                setTimeout(() => {
+                  document.querySelector(".current").classList.remove("shake-grid");
+                }, 500);
                 console.log("Word must be 5 letters long");
                 return;
               }

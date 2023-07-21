@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import lettersData from '../data/data.json'; // Assuming data.json is in the same directory
 
-export default function Keypad({ usedKeys, keypress,correct,turn }) {
+export default function Keypad({ usedKeys, keypress, correct, turn }) {
   const [letters, setLetters] = useState(null);
 
   useEffect(() => {
@@ -9,14 +9,17 @@ export default function Keypad({ usedKeys, keypress,correct,turn }) {
   }, []);
 
   const handleKeyPress = (letter) => {
-    if(correct!==true && turn < 5){
-    keypress({key:letter}); // Call the keypress function from the props with the letter as an argumen
-   }
+    if (correct !== true && turn < 6) {
+      keypress({ key: letter }); // Call the keypress function from the props with the letter as an argument
+      // Add vibration when the div is clicked
+      if ('vibrate' in navigator) {
+        navigator.vibrate(200);
+      }
+    }
   };
-    
+
   return (
     <div className="keypad">
-      
       {letters &&
         letters.map((l) => {
           const color = usedKeys[l.key];
@@ -26,8 +29,12 @@ export default function Keypad({ usedKeys, keypress,correct,turn }) {
             </div>
           );
         })}
-        <div onClick={() => handleKeyPress("Enter")} className='enter'>Enter</div>
-        <div onClick={() => handleKeyPress("Backspace")} className='backspace'>Backspace</div>
+      <div onClick={() => handleKeyPress("Enter")} className='enter'>
+        Enter
+      </div>
+      <div onClick={() => handleKeyPress("Backspace")} className='backspace'>
+        Backspace
+      </div>
     </div>
   );
 }
