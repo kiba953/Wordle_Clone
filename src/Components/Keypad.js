@@ -9,7 +9,7 @@ export default function Keypad({ usedKeys, keypress,correct,turn }) {
   }, []);
 
   const handleKeyPress = (letter) => {
-    if(correct!==true && turn < 5){
+    if(correct!==true && turn < 6){
     keypress({key:letter}); // Call the keypress function from the props with the letter as an argumen
    }
   };
