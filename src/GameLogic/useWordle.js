@@ -1,14 +1,15 @@
 import { useState } from "react"
+import axios from "axios";
 
 const useWordle = (solution) => {
-
+    
+    const URL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
     const [turn, setTurn] = useState(0)
     const [currentGuess, setCurrentGuess] = useState('')
     const [guesses, setGuesses] = useState([...Array(6)])
     const [history, setHistory] = useState([])
     const [correct, setCorrect] = useState(false)
     const [usedKeys, setUsedKeys] = useState({})
-
 
     const Guesscolor = () =>{
         let solutionArray = [...solution]
@@ -30,6 +31,8 @@ const useWordle = (solution) => {
         return formattedGuess
 
     }
+
+
 
     const newGuess = (formattedGuess) =>{
         if(currentGuess===solution){
@@ -69,24 +72,57 @@ const useWordle = (solution) => {
         setCurrentGuess('')
     }
 
-    const keypress = ({key}) =>{
-        if(key==='Enter'){
-            if(turn > 5){
-                console.log("no guess remaining")
-                return
-            }
-            if(history.includes(currentGuess)){
-                console.log("Already Tried")
-                return
-            }
-            if(currentGuess.length!==5){
-                console.log("Word must be 5 letter long")
-                return
-            }
-            const formatted = Guesscolor(currentGuess)
-            newGuess(formatted)
 
-        }
+    
+        const searchWord = (word) => {
+            return axios
+            .get(URL + word)
+            .then((response) => {
+                console.log("exists");
+                return response.status === 200;
+            })
+            .catch((error) => {
+                console.log("not");
+                return false;
+            });
+        };
+        
+
+        const keypress = ({ key }) => {
+            if (key === "Enter") {
+              if (turn > 5) {
+                console.log("no guess remaining");
+                return;
+              }
+              if (history.includes(currentGuess)) {
+                console.log("Already Tried");
+                return;
+              }
+              if (currentGuess.length !== 5) {
+                console.log("Word must be 5 letters long");
+                return;
+              }
+          
+              searchWord(currentGuess)
+                .then((isValid) => {
+                  if (!isValid) {
+                    console.log("Not a Valid Word");
+                    return;
+                  }
+                  console.log("Valid Word");
+          
+                  // Proceed with your logic here based on the result of searchWord (true/false)
+          
+                  const formatted = Guesscolor(currentGuess);
+                  newGuess(formatted);
+                })
+                .catch((error) => {
+                  console.error("Error:", error);
+                });
+            }
+
+
+
 
         if(key=== 'Backspace'){
             setCurrentGuess((prev)=>{
@@ -107,3 +143,4 @@ const useWordle = (solution) => {
 }
  
 export default useWordle;
+
