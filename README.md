@@ -14,3 +14,4 @@
     </ul>
   </li>
 </ol>
+<img src="wordle.png" width="1200px">
