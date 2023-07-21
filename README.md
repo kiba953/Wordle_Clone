@@ -1,10 +1,5 @@
-<style>
-  pre{
-    background-color:black;
-    color:yellow;
-  }
-</style>
-<h1 color="red">Wordle Clone</h1>
+
+<h1>Wordle Clone</h1>
 <h3>Hello, This is a clone of the popular game from New York times called Wordle</h3>
 <p>To Use the Code, Follow These steps</p>
 <ol>
