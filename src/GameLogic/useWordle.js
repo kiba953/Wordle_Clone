@@ -114,12 +114,12 @@ const useWordle = (solution) => {
               searchWord(currentGuess)
                 .then((isValid) => {
                   if (!isValid) {
-                    document.querySelector(".current").classList.add("shake-grid");
-                    setTimeout(() => {
-                      document.querySelector(".current").classList.remove("shake-grid");
-                    }, 500);
-                    console.log("Word not Valid");
-                    return;
+                        document.querySelector(".current").classList.add("shake-grid");
+                        setTimeout(() => {
+                          document.querySelector(".current").classList.remove("shake-grid");
+                        }, 500);
+                        console.log("Not a Valid Word");
+                        return;
                   }
                   console.log("Valid Word");
           
