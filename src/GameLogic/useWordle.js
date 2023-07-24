@@ -74,9 +74,9 @@ const useWordle = (solution) => {
 
 
     
-        const searchWord = (word) => {
-            return axios
-            .get(URL + word)
+    const searchWord = (word) => {
+        return axios
+            .get(URL + word.toLowerCase()) // Convert the word to lowercase before sending
             .then((response) => {
                 console.log("exists");
                 return response.status === 200;
@@ -85,11 +85,10 @@ const useWordle = (solution) => {
                 console.log("not");
                 return false;
             });
-        };
+    };
         
 
         const keypress = ({ key }) => {
-            console.log(key)
             if (key === "Enter") {
               if (turn > 5) {
                 console.log("no guess remaining");
@@ -115,7 +114,11 @@ const useWordle = (solution) => {
               searchWord(currentGuess)
                 .then((isValid) => {
                   if (!isValid) {
-                    console.log("Not a Valid Word");
+                    document.querySelector(".current").classList.add("shake-grid");
+                    setTimeout(() => {
+                      document.querySelector(".current").classList.remove("shake-grid");
+                    }, 500);
+                    console.log("Word not Valid");
                     return;
                   }
                   console.log("Valid Word");
@@ -141,7 +144,8 @@ const useWordle = (solution) => {
         if (/^[a-zA-Z]$/.test(key)){
             if(currentGuess.length < 5){
                 setCurrentGuess((prev)=>{
-                    return prev+key
+                    console.log(prev)
+                    return prev+key.toLowerCase()
                 })
             }
 

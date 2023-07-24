@@ -189,3 +189,42 @@ h1 {
 .shake-grid {
   animation: shake 0.3s;
 }
+:root {
+  --background-color: white;
+  --text-color: black;
+}
+
+.App.dark {
+  --background-color: black;
+  --text-color: white;
+}
+
+.App {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  /* Add other styles as needed */
+}
+.dark-mode-toggle {
+  position: fixed;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 12px; /* Increased padding for a larger button */
+  z-index: 1000; /* Ensure the button stays on top */
+}
+
+.dark-mode-toggle:focus {
+  outline: none;
+}
+
+.dark-mode-toggle{
+  font-size: 24px !important; /* Increased font size for the symbol */
+}
+
+.dark-mode .dark-mode-toggle span {
+  color: black; /* Moon color when in normal mode */
+}
